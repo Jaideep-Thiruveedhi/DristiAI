@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Screening Report | DR Screening
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/screening_report.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+        DR Screening
+    </div>
+
+
+    <div class="user-section">
+
+        <span id="userName">
+            Health Worker
+        </span>
+
+        <button
+            onclick="logout()"
+            class="logout-btn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="report-page">
+
+
+    <!-- ======================================================
+         REPORT ACTIONS
+         ====================================================== -->
+
+    <div class="report-actions">
+
+        <button
+            type="button"
+            class="secondary-button"
+            id="backButton"
+        >
+            ← Back
+        </button>
+
+
+        <button
+            type="button"
+            class="primary-button"
+            onclick="window.print()"
+        >
+            Print Report
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         A4 REPORT
+         ====================================================== -->
+
+    <section class="a4-report" id="screeningReport">
+
+
+        <!-- ==================================================
+             REPORT HEADER
+             ================================================== -->
+
+        <div class="report-header">
+
+            <div>
+
+                <h1>
+                    DR Screening Report
+                </h1>
+
+                <p>
+                    AI-Assisted Diabetic Retinopathy Screening
+                </p>
+
+            </div>
+
+
+            <div class="report-date">
+
+                <strong>
+                    Screening Date
+                </strong>
+
+                <span id="screeningDate">
+                    —
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PATIENT INFORMATION
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                Patient Information
+            </h2>
+
+
+            <div class="patient-report-grid">
+
+                <div>
+
+                    <span class="report-label">
+                        Patient Name
+                    </span>
+
+                    <strong id="patientName">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="report-label">
+                        Patient ID
+                    </span>
+
+                    <strong id="patientId">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="report-label">
+                        Age
+                    </span>
+
+                    <strong id="patientAge">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="report-label">
+                        Gender
+                    </span>
+
+                    <strong id="patientGender">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="report-label">
+                        Mobile
+                    </span>
+
+                    <strong id="patientMobile">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             FUNDUS IMAGE
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                Fundus Image
+            </h2>
+
+
+            <div
+                class="fundus-report-image"
+                id="fundusImageContainer"
+            >
+
+                <p>
+                    Loading image...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             AI SCREENING RESULT
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                AI Screening Result
+            </h2>
+
+
+            <div class="result-summary">
+
+
+                <div class="result-item">
+
+                    <span class="report-label">
+                        DR Grade
+                    </span>
+
+                    <strong
+                        id="drGrade"
+                        class="report-grade"
+                    >
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="result-item">
+
+                    <span class="report-label">
+                        AI Confidence
+                    </span>
+
+                    <strong id="confidence">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="result-item">
+
+                    <span class="report-label">
+                        Screening Status
+                    </span>
+
+                    <strong id="referableStatus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             WHY THIS RESULT
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                Why Did AI Give This Result?
+            </h2>
+
+
+            <div class="explanation-box">
+
+                <p id="explanation">
+                    Loading explanation...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             AI ATTENTION MAP
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                AI Attention Map
+            </h2>
+
+            <p class="section-description">
+
+                Highlighted regions indicate areas that
+                influenced the AI prediction.
+
+            </p>
+
+
+            <div class="gradcam-report-placeholder">
+
+                <span>
+                    Grad-CAM visualization
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             LESION EVIDENCE
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                Lesion-Level Evidence
+            </h2>
+
+
+            <div class="lesion-grid">
+
+                <div class="lesion-item">
+                    <span>Microaneurysms</span>
+                    <strong>—</strong>
+                </div>
+
+                <div class="lesion-item">
+                    <span>Hemorrhages</span>
+                    <strong>—</strong>
+                </div>
+
+                <div class="lesion-item">
+                    <span>Hard Exudates</span>
+                    <strong>—</strong>
+                </div>
+
+                <div class="lesion-item">
+                    <span>Soft Exudates</span>
+                    <strong>—</strong>
+                </div>
+
+            </div>
+
+            <p class="section-description">
+                Lesion-level evidence will be provided
+                when the trained lesion detection model
+                is integrated.
+            </p>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             MODEL INFORMATION
+             ================================================== -->
+
+        <section class="report-section">
+
+            <h2>
+                AI Model Information
+            </h2>
+
+
+            <div class="model-information">
+
+                <span>
+                    Model Version
+                </span>
+
+                <strong id="modelVersion">
+                    —
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             DISCLAIMER
+             ================================================== -->
+
+        <footer class="report-footer">
+
+            <p>
+
+                <strong>
+                    Important:
+                </strong>
+
+                This is an AI-assisted screening result
+                and does not replace examination or
+                confirmation by a qualified ophthalmologist.
+
+            </p>
+
+        </footer>
+
+
+    </section>
+
+</main>
+
+
+
+<script>
+
+    const patientId =
+        "{{ patient_id }}";
+
+    const screeningId =
+        "{{ screening_id }}";
+
+</script>
+
+
+<script
+    src="{{ url_for('static', filename='js/screening_report.js') }}"
+></script>
+
+
+</body>
+
+</html>

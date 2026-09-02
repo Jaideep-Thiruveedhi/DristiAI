@@ -1,0 +1,676 @@
+/* ============================================================
+   SCREENING REPORT PAGE
+   ============================================================ */
+
+.report-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+
+/* ============================================================
+   REPORT ACTIONS
+   ============================================================ */
+
+.report-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ============================================================
+   A4 REPORT
+   ============================================================ */
+
+.a4-report {
+    width: 210mm;
+    min-height: 297mm;
+
+    margin: 0 auto;
+    padding: 18mm;
+
+    background: white;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ============================================================
+   REPORT HEADER
+   ============================================================ */
+
+.report-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 2px solid #111827;
+}
+
+
+.report-header h1 {
+    margin: 0 0 6px;
+
+    font-size: 26px;
+    line-height: 1.2;
+
+    color: #111827;
+}
+
+
+.report-header p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+.report-date {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+.report-date strong {
+    font-size: 12px;
+
+    color: #6b7280;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+.report-date span {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #111827;
+}
+
+
+/* ============================================================
+   REPORT SECTIONS
+   ============================================================ */
+
+.report-section {
+    margin-top: 24px;
+}
+
+
+.report-section h2 {
+    margin: 0 0 14px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    font-size: 18px;
+
+    color: #111827;
+}
+
+
+.section-description {
+    margin: 0 0 12px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   PATIENT INFORMATION
+   ============================================================ */
+
+.patient-report-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+}
+
+
+.patient-report-grid > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 7px;
+
+    background: #fafafa;
+}
+
+
+.report-label {
+    font-size: 11px;
+
+    color: #6b7280;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+
+.patient-report-grid strong {
+    font-size: 15px;
+
+    color: #111827;
+}
+
+
+/* ============================================================
+   FUNDUS IMAGE
+   ============================================================ */
+
+.fundus-report-image {
+    min-height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    background: #f9fafb;
+}
+
+
+.fundus-report-image img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 420px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 5px;
+}
+
+
+.fundus-report-image p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   AI SCREENING RESULT
+   ============================================================ */
+
+.result-summary {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 16px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+}
+
+
+.result-item strong {
+    color: #111827;
+
+    font-size: 16px;
+}
+
+
+.report-grade {
+    font-size: 26px !important;
+}
+
+
+/* ============================================================
+   EXPLANATION
+   ============================================================ */
+
+.explanation-box {
+    padding: 16px;
+
+    background: #f9fafb;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+}
+
+
+.explanation-box p {
+    margin: 0;
+
+    color: #374151;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   AI ATTENTION MAP
+   ============================================================ */
+
+.gradcam-report-placeholder {
+    min-height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    border: 2px dashed #d1d5db;
+
+    border-radius: 8px;
+
+    background: #f9fafb;
+
+    color: #6b7280;
+
+    text-align: center;
+}
+
+
+.gradcam-report-placeholder span {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.gradcam-report-placeholder::after {
+    content:
+        "Will be generated when Grad-CAM is integrated";
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #9ca3af;
+}
+
+
+/* ============================================================
+   LESION EVIDENCE
+   ============================================================ */
+
+.lesion-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+.lesion-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 7px;
+
+    background: #fafafa;
+}
+
+
+.lesion-item span {
+    font-size: 14px;
+
+    color: #374151;
+}
+
+
+.lesion-item strong {
+    min-width: 25px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   MODEL INFORMATION
+   ============================================================ */
+
+.model-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.model-information span {
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+.model-information strong {
+    color: #111827;
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   REPORT FOOTER / DISCLAIMER
+   ============================================================ */
+
+.report-footer {
+    margin-top: 30px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #d1d5db;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.report-footer p {
+    margin: 0;
+}
+
+
+/* ============================================================
+   ERROR STATE
+   ============================================================ */
+
+.report-error {
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+
+.report-error h2 {
+    margin: 0 0 10px;
+
+    color: #111827;
+
+    font-size: 22px;
+}
+
+
+.report-error p {
+    margin: 0 0 20px;
+
+    color: #6b7280;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   EMPTY REPORT STATE
+   ============================================================ */
+
+.report-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 250px;
+
+    color: #6b7280;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .report-page {
+        padding: 20px 15px;
+    }
+
+
+    .a4-report {
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 25px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .report-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .report-actions button {
+        width: 100%;
+    }
+
+
+    .report-header {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .report-date {
+        text-align: left;
+    }
+
+
+    .patient-report-grid,
+    .result-summary,
+    .lesion-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .fundus-report-image {
+        min-height: 220px;
+    }
+
+
+    .fundus-report-image img {
+        max-height: 350px;
+    }
+
+
+    .model-information {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+}
+
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+
+    html,
+    body {
+        margin: 0;
+
+        padding: 0;
+
+        background: white;
+    }
+
+
+    .topbar,
+    .report-actions {
+        display: none !important;
+    }
+
+
+    .report-page {
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+
+    .a4-report {
+        width: 210mm;
+
+        min-height: 297mm;
+
+        margin: 0;
+
+        padding: 15mm;
+
+        box-shadow: none;
+    }
+
+
+    .report-section {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+
+    .report-header {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+
+    .result-item,
+    .lesion-item,
+    .patient-report-grid > div {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+
+    .fundus-report-image img {
+        max-height: 390px;
+    }
+
+
+    .gradcam-report-placeholder {
+        min-height: 220px;
+    }
+
+
+    .report-footer {
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+    }
+
+}

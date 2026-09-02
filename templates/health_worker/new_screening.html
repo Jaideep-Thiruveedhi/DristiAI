@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>New Screening | DR Screening</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        DR Screening
+    </div>
+
+    <div class="user-section">
+
+        <span id="userName">
+            Health Worker
+        </span>
+
+        <button
+            onclick="logout()"
+            class="logout-btn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="dashboard-container screening-container">
+
+
+    <!-- ====================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ====================================================== -->
+
+    <section class="welcome-section">
+
+        <h1>
+            New Screening
+        </h1>
+
+        <p>
+            Upload a fundus image for AI-assisted
+            diabetic retinopathy screening.
+        </p>
+
+    </section>
+
+
+    <!-- ====================================================== -->
+    <!-- PATIENT -->
+    <!-- ====================================================== -->
+
+    <section class="screening-card">
+
+        <h2>
+            Patient
+        </h2>
+
+        <p>
+            Patient ID:
+            <strong id="patientIdDisplay">
+                {{ patient_id }}
+            </strong>
+        </p>
+
+        <div id="patientInfo">
+            Loading patient information...
+        </div>
+
+    </section>
+
+
+    <!-- ====================================================== -->
+    <!-- IMAGE UPLOAD -->
+    <!-- ====================================================== -->
+
+    <section class="screening-card">
+
+        <h2>
+            Fundus Image
+        </h2>
+
+        <p>
+            Upload a clear retinal fundus image.
+        </p>
+
+
+        <div class="image-upload-area">
+
+            <label
+                for="fundusImage"
+                class="upload-button"
+            >
+                Choose Fundus Image
+            </label>
+
+            <input
+                type="file"
+                id="fundusImage"
+                accept="image/jpeg,image/png,image/jpg"
+            >
+
+            <p id="fileName">
+                No image selected
+            </p>
+
+
+            <div
+                id="imagePreview"
+                class="image-preview"
+            >
+
+                <img
+                    id="previewImage"
+                    alt="Fundus image preview"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- IMAGE QUALITY -->
+        <!-- ================================================== -->
+
+        <div
+            id="qualityResult"
+            class="screening-status"
+        >
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- ANALYSIS STATUS -->
+        <!-- ================================================== -->
+
+        <div
+            id="screeningStatus"
+            class="screening-status"
+        >
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- RESULT -->
+        <!-- ================================================== -->
+
+        <div
+            id="screeningResult"
+            class="screening-result"
+        >
+
+            <h2>
+                Screening Result
+            </h2>
+
+            <!-- DR Grade -->
+
+            <div class="result-grade" id="resultGrade">
+            </div>
+
+
+            <!-- Confidence -->
+
+            <p>
+                <strong>AI Confidence:</strong>
+                <span id="resultConfidence">
+                </span>
+            </p>
+
+
+            <!-- Referral Status -->
+
+            <p>
+                <strong>Screening Status:</strong>
+                <span id="resultReferral">
+                </span>
+            </p>
+
+
+            <!-- Explanation -->
+
+            <div class="result-explanation">
+
+                <h3>
+                    Why this result?
+                </h3>
+
+                <p id="resultExplanation">
+                </p>
+
+            </div>
+
+
+            <!-- Grad-CAM -->
+
+            <div class="gradcam-section">
+
+                <h3>
+                    AI Attention Map
+                </h3>
+
+                <p>
+                    The highlighted regions show areas that
+                    influenced the AI prediction.
+                </p>
+
+                <div class="gradcam-placeholder">
+
+                    <span>
+                        Grad-CAM visualization
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Disclaimer -->
+
+            <p class="result-disclaimer">
+
+                AI-assisted screening only. This result does not
+                replace examination by a qualified ophthalmologist.
+
+            </p>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="saveScreeningButton"
+            >
+                Save Screening
+            </button>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- ACTIONS -->
+        <!-- ================================================== -->
+
+        <div class="form-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="backButton"
+            >
+                ← Back
+            </button>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="analyzeButton"
+                disabled
+            >
+                Analyze Image
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const patientId =
+        "{{ patient_id }}";
+
+</script>
+
+
+<script
+    src="{{ url_for('static', filename='js/new_screening.js') }}"
+></script>
+
+
+</body>
+
+</html>
