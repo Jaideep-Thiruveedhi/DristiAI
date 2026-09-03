@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: var(--font-mono);
+  --color-grid-bg: #0a0b0d;
+  --color-grid-cyan: #22d3ee;
+  --color-grid-cyan-dim: rgba(34, 211, 238, 0.35);
+  --color-grid-grey-1: #1a1c1f;
+  --color-grid-grey-2: #2a2d31;
+  --color-grid-grey-3: #4a4d52;
+}
+
+:root {
+  --background: #0a0b0d;
+  --foreground: #f5f6f7;
+  --grid-bg: #0a0b0d;
+  --grid-cyan: #22d3ee;
+  --grid-cyan-dim: rgba(34, 211, 238, 0.35);
+  --grid-grey-1: #1a1c1f;
+  --grid-grey-2: #2a2d31;
+  --grid-grey-3: #4a4d52;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--grid-bg);
+  color: var(--foreground);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  overflow-x: hidden;
+}
+
+/* Holographic grid background — subtle cyan grid + radial depth */
+.bg-holo {
+  background:
+    linear-gradient(rgba(34, 211, 238, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.025) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 50% at 50% 38%, rgba(34, 211, 238, 0.06) 0%, transparent 62%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(34, 211, 238, 0.04) 0%, transparent 55%),
+    var(--grid-bg);
+  background-size:
+    32px 32px,
+    32px 32px,
+    100% 100%,
+    100% 100%,
+    auto;
+}
+
+/* Panel — sharp, technical, cyan border for active, grey for idle */
+.holo-panel {
+  background: rgba(26, 28, 31, 0.72);
+  border: 1px solid rgba(74, 77, 82, 0.95);
+  border-radius: 2px;
+  /* deliberately FLAT — no backdrop-blur: Concept C is clinical precise, not soft glass.
+     Semi-transparency alone keeps the 3D scene legible underneath without premium blur. */
+}
+
+.holo-panel--active {
+  border-color: rgba(34, 211, 238, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.18),
+    0 0 22px rgba(34, 211, 238, 0.12),
+    inset 0 0 18px rgba(34, 211, 238, 0.04);
+}
+
+.holo-panel--cyan-intense {
+  border-color: rgba(34, 211, 238, 1);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.32),
+    0 0 28px rgba(34, 211, 238, 0.18),
+    inset 0 0 22px rgba(34, 211, 238, 0.06);
+}
+
+/* Focus ring — cyan only */
+*:focus-visible {
+  outline: 1px solid var(--grid-cyan);
+  outline-offset: 2px;
+}
+
+/* Scrollbar — cyan/grey only */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.28);
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
